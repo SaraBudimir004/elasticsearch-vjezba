@@ -193,3 +193,95 @@ Content-Type: application/json
 
 GET /filmovi/_count
 
+
+GET http://localhost:9200/filmovi/_search
+Content-Type: application/json
+
+Zadatak 25
+{
+  "query": {
+    "match": {
+      "opis": "joker batman"
+    }
+  }
+}
+
+Zadatak 26
+GET http://localhost:9200/filmovi/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "term": {
+      "zanr": "drama"
+    }
+  }
+}
+
+Zadatak 27
+ocjena
+GET http://localhost:9200/filmovi/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "range": {
+      "ocjena": {
+        "gt": 8.5
+      }
+    }
+  }
+}
+
+godina
+GET http://localhost:9200/filmovi/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "range": {
+      "godina": {
+        "gt": 2018
+      }
+    }
+  }
+}
+Zadatak 28
+GET http://localhost:9200/filmovi/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "bool": {
+      "filter": [
+        { "term": { "dostupno": true } },
+        { "range": { "ocjena": { "gte": 7 } } }
+      ],
+      "must": [
+        { "match": { "opis": "svemir" } }
+      ]
+    }
+  }
+}
+
+Zadatak 29
+GET http://localhost:9200/filmovi/_search
+Content-Type: application/json
+
+{
+  "size": 0,
+  "aggs": {
+    "po_zanru": {
+      "terms": {
+        "field": "zanr"
+      },
+      "aggs": {
+        "prosjecna_ocjena": {
+          "avg": {
+            "field": "ocjena"
+          }
+        }
+      }
+    }
+  }
+}

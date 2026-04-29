@@ -38,5 +38,6 @@ Elasticsearch generira tokene: na, drini, cuprija-tekst je razbijen na 3 riječi
 
 20. Analyzer je važan jer priprema tekst za pretraživanje tako da ga razbije na riječi i prilagodi (npr. mala slova, uklanjanje kvačica), bez analyzera elasticsearch bi tražio točan zapis, pa bi pretraga bila neprecizna i često ne bi pronašla rezultate ako se riječi ne poklapaju potpuno
 
-
+30.
+Elasticsearch je bolji od SQL upita LIKE '%tekst%' kada tražimo tekst u većim količinama podataka. SQL traži točno napisanu riječ, dok Elasticsearch može pronaći riječ i ako nije potpuno ista (npr. bez kvačica ili s malim slovima). Također, Elasticsearch može bolje razumjeti tekst jer ga prvo “razbije” na riječi i obradi. Rezultati su poredani po tome koliko su važni, pa se najrelevantniji prikazuju prvi. Pretraga je brža jer je Elasticsearch napravljen baš za takve stvari. Osim toga, može raditi s velikim količinama podataka bez problema. SQL LIKE je jednostavniji, ali sporiji i manje precizan za ovakvu vrstu pretrage.
 
