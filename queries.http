@@ -140,3 +140,56 @@ Content-Type: application/json
     }
   }
 }
+
+ZAVRSNI Zadatak
+Kreirenje Indeksa
+PUT http://localhost:9200/filmovi
+Content-Type: application/json
+
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "hrvatski_analyzer": {
+          "tokenizer": "standard",
+          "filter": ["lowercase", "asciifolding"]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "naslov": { "type": "text", "analyzer": "hrvatski_analyzer" },
+      "redatelj": { "type": "keyword" },
+      "zanr": { "type": "keyword" },
+      "opis": { "type": "text", "analyzer": "hrvatski_analyzer" },
+      "godina": { "type": "integer" },
+      "ocjena": { "type": "double" },
+      "dostupno": { "type": "boolean" }
+    }
+  }
+}
+Dodavanje filmova
+
+POST http://localhost:9200/filmovi/_bulk
+Content-Type: application/json
+
+{ "index": { "_id": "1" } }
+{ "naslov": "Inception", "redatelj": "Christopher Nolan", "zanr": "sci-fi", "opis": "Film o snovima i podsvijesti.", "godina": 2010, "ocjena": 8.8, "dostupno": true }
+{ "index": { "_id": "2" } }
+{ "naslov": "Titanic", "redatelj": "James Cameron", "zanr": "drama", "opis": "Ljubavna priča.", "godina": 1997, "ocjena": 7.9, "dostupno": true }
+{ "index": { "_id": "3" } }
+{ "naslov": "The Dark Knight", "redatelj": "Christopher Nolan", "zanr": "akcija", "opis": "Batman protiv Jokera.", "godina": 2008, "ocjena": 9.0, "dostupno": true }
+{ "index": { "_id": "4" } }
+{ "naslov": "Avatar", "redatelj": "James Cameron", "zanr": "sci-fi", "opis": "Pandora.", "godina": 2009, "ocjena": 7.8, "dostupno": false }
+{ "index": { "_id": "5" } }
+{ "naslov": "Gladiator", "redatelj": "Ridley Scott", "zanr": "povijesni", "opis": "Rimski general.", "godina": 2000, "ocjena": 8.5, "dostupno": true }
+{ "index": { "_id": "6" } }
+{ "naslov": "Interstellar", "redatelj": "Christopher Nolan", "zanr": "sci-fi", "opis": "Svemir.", "godina": 2014, "ocjena": 8.6, "dostupno": true }
+{ "index": { "_id": "7" } }
+{ "naslov": "Joker", "redatelj": "Todd Phillips", "zanr": "drama", "opis": "Joker priča.", "godina": 2019, "ocjena": 8.4, "dostupno": false }
+{ "index": { "_id": "8" } }
+{ "naslov": "Forrest Gump", "redatelj": "Robert Zemeckis", "zanr": "drama", "opis": "Život čovjeka.", "godina": 1994, "ocjena": 8.8, "dostupno": true }
+
+GET /filmovi/_count
+
