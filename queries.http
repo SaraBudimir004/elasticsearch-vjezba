@@ -1,0 +1,73 @@
+21.
+GET http://localhost:9200/knjige/_search
+Content-Type: application/json
+
+{
+  "size": 0,
+  "aggs": {
+    "po_autoru": {
+      "terms": {
+        "field": "autor"
+      }
+    }
+  }
+}
+
+22.
+GET http://localhost:9200/knjige/_search
+Content-Type: application/json
+
+{
+  "size": 0,
+  "aggs": {
+    "po_zanru": {
+      "terms": {
+        "field": "zanr"
+      },
+      "aggs": {
+        "prosjecna_cijena": {
+          "avg": {
+            "field": "cijena"
+          }
+        }
+      }
+    }
+  }
+}
+
+23.
+GET http://localhost:9200/knjige/_search
+Content-Type: application/json
+
+{
+  "size": 0,
+  "aggs": {
+    "po_zanru": {
+      "terms": {
+        "field": "zanr"
+      },
+      "aggs": {
+        "najveca_cijena": {
+          "max": {
+            "field": "cijena"
+          }
+        }
+      }
+    }
+  }
+}
+
+24.
+GET http://localhost:9200/knjige/_search
+Content-Type: application/json
+
+{
+  "size": 0,
+  "aggs": {
+    "dostupnost": {
+      "terms": {
+        "field": "dostupno"
+      }
+    }
+  }
+}
