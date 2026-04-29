@@ -8,4 +8,35 @@ Green znači da sve radi kako treba i svi podaci su dostupni, yellow znači da s
 12. _score pokazuje koliko je neki rezultat dobar za ono što tražiš, šta se dokument više poklapa s upitom, to ima veci _score
 Zato neki dokumenti imaju veći, a neki manji _score
 U mom primjeru se vidi da je max_score null jer nema pronađenih rezultata
+18. {
+  "tokens": [
+    {
+      "token": "na",
+      "start_offset": 0,
+      "end_offset": 2,
+      "type": "<ALPHANUM>",
+      "position": 0
+    },
+    {
+      "token": "drini",
+      "start_offset": 3,
+      "end_offset": 8,
+      "type": "<ALPHANUM>",
+      "position": 1
+    },
+    {
+      "token": "cuprija",
+      "start_offset": 9,
+      "end_offset": 16,
+      "type": "<ALPHANUM>",
+      "position": 2
+    }
+  ]
+}
+Elasticsearch generira tokene: na, drini, cuprija-tekst je razbijen na 3 riječi,sve je pretvoreno u male znakove
+19. lowercase pretvara sva slova u mala slova, a asciifolding mijenja slova s kvačicama u obična slova, razlika je u tome što lowercase mijenja samo velika slova, a asciifolding uklanja kvačice (č,ć,ž,š)->(c,z,s)
+
+20. Analyzer je važan jer priprema tekst za pretraživanje tako da ga razbije na riječi i prilagodi (npr. mala slova, uklanjanje kvačica), bez analyzera elasticsearch bi tražio točan zapis, pa bi pretraga bila neprecizna i često ne bi pronašla rezultate ako se riječi ne poklapaju potpuno
+
+
 
