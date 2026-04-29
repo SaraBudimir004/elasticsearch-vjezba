@@ -1,3 +1,72 @@
+Zadatak3
+roman
+GET http://localhost:9200/knjige/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "match": {
+      "opis": "roman"
+    }
+  }
+}
+
+pravda_sudbina
+GET http://localhost:9200/knjige/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "match": {
+      "opis": "pravda sudbina"
+    }
+  }
+}
+
+Zadatak4
+GET /knjige/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "opis": "roman"
+          }
+        }
+      ],
+      "filter": [
+        {
+          "term": {
+            "dostupno": true
+          }
+        },
+        {
+          "range": {
+            "cijena": {
+              "lte": 22
+            }
+          }
+        }
+      ]
+    }
+  },
+  "sort": [
+    {
+      "cijena": "asc"
+    }
+  ]
+}
+
+17.
+POST http://localhost:9200/knjige/_analyze
+Content-Type: application/json
+
+{
+  "analyzer": "hrvatski_analyzer",
+  "text": "Na Drini ćuprija"
+}
+
 21.
 GET http://localhost:9200/knjige/_search
 Content-Type: application/json
